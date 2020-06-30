@@ -13,20 +13,26 @@ export class RecipeService {
 	recipeChanges = new Subject<Recipe[]>();
 
 	constructor(private shoppingListService: ShoppingListService) {
-		this.recipes = [
-			new Recipe(
-				'A test recipe',
-				'A test description',
-				'https://www.pequerecetas.com/wp-content/uploads/2020/03/cochinita-pibil-ingredientes.jpg',
-				[ new Ingredient('Apples', 5), new Ingredient('Melon', 2) ]
-			),
-			new Recipe(
-				'Another test recipe',
-				'Another test description',
-				'https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg',
-				[ new Ingredient('Flour', 100), new Ingredient('Butter', 25) ]
-			)
-		];
+		this.recipes = new Array();
+		// this.recipes = [
+		// 	new Recipe(
+		// 		'A test recipe',
+		// 		'A test description',
+		// 		'https://www.pequerecetas.com/wp-content/uploads/2020/03/cochinita-pibil-ingredientes.jpg',
+		// 		[ new Ingredient('Apples', 5), new Ingredient('Melon', 2) ]
+		// 	),
+		// 	new Recipe(
+		// 		'Another test recipe',
+		// 		'Another test description',
+		// 		'https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg',
+		// 		[ new Ingredient('Flour', 100), new Ingredient('Butter', 25) ]
+		// 	)
+		// ];
+	}
+
+	setRecipes(recipes: Recipe[]) {
+		this.recipes = recipes;
+		this.recipeChanges.next(this.recipes.slice());
 	}
 
 	getRecipes() {
